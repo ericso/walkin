@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://8ntfer7mtoxk"]
+
+[ext_resource type="Script" uid="uid://cmd5qy7mxx7wd" path="res://character/character.gd" id="1_1l1n4"]
+[ext_resource type="Texture2D" uid="uid://bcuu7qgyrtvik" path="res://assets/characters/main-walk.png" id="1_yf0e5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l1n4"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugqs2"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx151"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rvpn"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6jyn"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgjim"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy5t8"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy06j"]
+atlas = ExtResource("1_yf0e5")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qkjfd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l1n4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugqs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx151")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rvpn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6jyn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgjim")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy5t8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy06j")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 30.0
+}]
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_1l1n4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(952, 885)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_qkjfd")
+animation = &"walk"
