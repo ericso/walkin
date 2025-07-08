@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbccv750rgv25"
-path="res://.godot/imported/rocks.png-3777e899aa168d3ab6073a911e257481.ctex"
+uid="uid://cgf12x2nr4xql"
+path="res://.godot/imported/plant.png-3c4913fff157886df3903165bbae51f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/rocks.png"
-dest_files=["res://.godot/imported/rocks.png-3777e899aa168d3ab6073a911e257481.ctex"]
+source_file="res://assets/backgrounds/dark_forest/plant.png"
+dest_files=["res://.godot/imported/plant.png-3c4913fff157886df3903165bbae51f3.ctex"]
 
 [params]
 
