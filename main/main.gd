@@ -7,7 +7,7 @@ extends Node2D
 var step_count := 0
 
 func _unhandled_input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		character.step_forward()
 		step_count += 1
 		step_label.text = "Steps: %d" % step_count
