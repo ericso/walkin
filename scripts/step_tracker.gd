@@ -9,7 +9,7 @@ func add_steps(count: float = 1.0):
 	emit_signal("steps_updated", steps)
 	UpgradeManager.check_unlocks()
 
-func get_step_count() -> int:
+func get_step_count() -> float:
 	return steps
 	
 func set_step_count(count: int) -> void:

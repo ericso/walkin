@@ -28,8 +28,9 @@ func step_forward():
 	tween.tween_callback(Callable(self, "_on_step_finished"))
 
 func _on_anim_finished():
-	# Optional: hold on last frame or reset to frame 0
-	sprite.frame = sprite.frame_count - 1
+	# Hold on last frame by asking the SpriteFrames resource for its count
+	var last_idx = sprite.sprite_frames.get_frame_count("walk") - 1
+	sprite.frame = last_idx
 
 func _on_step_finished():
 	is_stepping = false
