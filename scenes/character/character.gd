@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var step_distance := 32        # Distance moved per step
-@export var step_duration := 0.2       # Time it takes to move per step
+@export var STEP_DISTANCE := 32        # Distance moved per step
+@export var STEP_DURATION := 0.2       # Time it takes to move per step
 
 @onready var sprite := $Sprite         # Your AnimatedSprite2D node
 
@@ -20,11 +20,11 @@ func step_forward():
 	# Connect to animation_finished (connect only once)
 	if not sprite.is_connected("animation_finished", Callable(self, "_on_anim_finished")):
 		sprite.connect("animation_finished", Callable(self, "_on_anim_finished"))
-
+	
 	# Start movement tween
-	var target = position + Vector2(step_distance, 0)
+	var target = position + Vector2(STEP_DISTANCE, 0)
 	var tween = create_tween()
-	tween.tween_property(self, "position", target, step_duration)
+	tween.tween_property(self, "position", target, STEP_DURATION)
 	tween.tween_callback(Callable(self, "_on_step_finished"))
 
 func _on_anim_finished():

@@ -4,7 +4,6 @@ var steps: float = 0.0
 
 signal steps_updated(new_total: int)
 
-
 func add_steps(count: float = 1.0):
 	steps += count
 	emit_signal("steps_updated", steps)
