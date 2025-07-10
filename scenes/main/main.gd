@@ -45,7 +45,7 @@ func _hide_all_labels() -> void:
 	car_label.visible = false
 
 # character_takes_steps handles the character taking `steps` steps
-func character_takes_steps(steps: int) -> void:
+func character_takes_steps(steps: float) -> void:
 	if steps > 0:
 		character.step_forward()
 	StepTracker.add_steps(steps)

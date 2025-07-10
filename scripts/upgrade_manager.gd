@@ -4,7 +4,7 @@ class Upgrade:
 	var id: String # upgrade id is the same as its String key in the dictionary
 	var name: String
 	var cost: int # unlock threshold in steps
-	var rate: int # steps per second
+	var rate: float # steps per second
 
 # upgrades is a dictionary of Upgrade class objects
 var upgrades: Dictionary[String, Upgrade] = {}
@@ -23,13 +23,13 @@ func initialize_upgrades() -> void:
 	upgrades["bike"].id = "bike"
 	upgrades["bike"].name = "Bicycle"
 	upgrades["bike"].cost = 10000 # 10,000 steps (5 miles)
-	upgrades["bike"].rate = 2 # steps per second
+	upgrades["bike"].rate = 2.0 # steps per second
 	
 	upgrades["car"] = Upgrade.new()
 	upgrades["car"].id = "car"
 	upgrades["car"].name = "Car"
 	upgrades["car"].cost = 200000 # 200,000 steps (100 miles)
-	upgrades["car"].rate = 33 # approx 60 MPH
+	upgrades["car"].rate = 33.3 # approx 60 MPH
 
 func initialize_upgrade_unlock_status() -> void:
 	for key in upgrades:
@@ -54,5 +54,5 @@ func get_upgrade_unlock_status() -> Dictionary:
 func set_upgrade_unlock_status(unlocks: Dictionary) -> void:
 	upgrade_unlock_status = unlocks
 
-func get_step_rate(id: String) -> int:
+func get_step_rate(id: String) -> float:
 	return upgrades[id].rate
