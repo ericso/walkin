@@ -27,6 +27,4 @@ func calculate_step_delta(delta: float) -> float:
 	for id in unlocked:
 		if unlocked[id]:
 			step_count += UpgradeManager.get_step_rate(id) * delta
-	print("DEBUG::calculate_step_delta " + str(delta))
-	print("DEBUG::calculate_step_delta " + str(step_count))
 	return step_count
