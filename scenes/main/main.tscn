@@ -1,17 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://c5i4syncqevtr"]
 
-[ext_resource type="Script" uid="uid://cuf6qkeg2185o" path="res://main/main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://cuf6qkeg2185o" path="res://scenes/main/main.gd" id="1_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://baat2rc3ssihy" path="res://assets/backgrounds/dark_forest/sky.png" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://372w1l55ikxw" path="res://assets/backgrounds/dark_forest/ground_1.png" id="3_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dqfwopk0ex7h" path="res://assets/backgrounds/dark_forest/clouds_1.png" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://bncrrgcsbtsi0" path="res://main/background/clouds_1.gd" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://c8dxpb7u5aqi2" path="res://main/background/clouds_2.gd" id="5_4dugh"]
+[ext_resource type="Script" uid="uid://bncrrgcsbtsi0" path="res://scenes/main/background/clouds_1.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://c8dxpb7u5aqi2" path="res://scenes/main/background/clouds_2.gd" id="5_4dugh"]
 [ext_resource type="Texture2D" uid="uid://cxe6u3l0ju1gi" path="res://assets/backgrounds/dark_forest/clouds_2.png" id="5_kfbq2"]
 [ext_resource type="Texture2D" uid="uid://e5xspynp5xji" path="res://assets/backgrounds/dark_forest/ground_2.png" id="8_67ri8"]
 [ext_resource type="Texture2D" uid="uid://bqn62jo4a6xto" path="res://assets/backgrounds/dark_forest/ground_3.png" id="9_grrlh"]
 [ext_resource type="Texture2D" uid="uid://cgf12x2nr4xql" path="res://assets/backgrounds/dark_forest/plant.png" id="10_0i4oc"]
 [ext_resource type="Texture2D" uid="uid://dbccv750rgv25" path="res://assets/backgrounds/dark_forest/rocks.png" id="10_bsumw"]
-[ext_resource type="PackedScene" uid="uid://8ntfer7mtoxk" path="res://character/character.tscn" id="12_fwcvl"]
+[ext_resource type="PackedScene" uid="uid://8ntfer7mtoxk" path="res://scenes/character/character.tscn" id="12_fwcvl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fwcvl"]
 font_size = 48
