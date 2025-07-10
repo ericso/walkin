@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 StepTracker="*res://scripts/step_tracker.gd"
 SaveManager="*res://scripts/save_manager.gd"
+UpgradeManager="*res://scripts/upgrade_manager.gd"
 
 [display]
 

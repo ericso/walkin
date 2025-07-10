@@ -2,15 +2,14 @@ extends Node
 
 var save_path := "user://save.json"
 
-# --- Save to Disk ---
+var data := {}
+
 func save():
-	var data := {
-		"steps": StepTracker.get_step_count(),
-	}
+	data.set("steps", StepTracker.get_step_count())
+	data.set("upgrades", UpgradeManager.get_unlocked_upgrades())
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data))
 
-# --- Load from Disk ---
 func load():
 	if not FileAccess.file_exists(save_path):
 		return
@@ -18,3 +17,4 @@ func load():
 	var data = JSON.parse_string(file.get_as_text())
 	if typeof(data) == TYPE_DICTIONARY:
 		StepTracker.set_step_count(data.get("steps", 0))
+		UpgradeManager.set_unlocked_upgrades(data.get("upgrades", []))

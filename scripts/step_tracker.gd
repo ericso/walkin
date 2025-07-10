@@ -4,9 +4,11 @@ var steps: int = 0
 
 signal steps_updated(new_total: int)
 
+
 func add_steps(count: int = 1):
 	steps += count
 	emit_signal("steps_updated", steps)
+	UpgradeManager.check_unlocks()
 
 func get_step_count() -> int:
 	return steps
