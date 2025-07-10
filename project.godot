@@ -15,6 +15,11 @@ run/main_scene="uid://c5i4syncqevtr"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+StepTracker="*res://scripts/step_tracker.gd"
+SaveManager="*res://scripts/save_manager.gd"
+
 [display]
 
 window/size/viewport_width=1920
