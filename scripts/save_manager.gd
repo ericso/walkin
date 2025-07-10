@@ -1,20 +1,20 @@
 extends Node
 
-var save_path := "user://save.json"
+var SAVE_PATH := "user://save.json"
 
-# --- Save to Disk ---
+var data := {}
+
 func save():
-	var data := {
-		"steps": StepTracker.get_step_count(),
-	}
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	data.set("steps", StepTracker.get_step_count())
+	data.set("upgrades", UpgradeManager.get_upgrade_unlock_status())
+	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	file.store_string(JSON.stringify(data))
 
-# --- Load from Disk ---
 func load():
-	if not FileAccess.file_exists(save_path):
+	if not FileAccess.file_exists(SAVE_PATH):
 		return
-	var file = FileAccess.open(save_path, FileAccess.READ)
-	var data = JSON.parse_string(file.get_as_text())
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	data = JSON.parse_string(file.get_as_text())
 	if typeof(data) == TYPE_DICTIONARY:
 		StepTracker.set_step_count(data.get("steps", 0))
+		UpgradeManager.set_upgrade_unlock_status(data.get("upgrades", []))
