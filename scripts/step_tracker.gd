@@ -25,9 +25,8 @@ func calculate_step_delta(delta: float) -> float:
 	var step_count: float = 0.0
 	
 	# calculate delta step_count from purchased upgrades
-	var purchased := UpgradeManager.get_upgrade_purchase_status()
-	for id in purchased:
-		if purchased[id]:
+	for id in UpgradeManager.purchased_upgrades:
+		if UpgradeManager.purchased_upgrades[id]:
 			step_count += UpgradeManager.get_step_rate(id) * delta
 	
 	return step_count

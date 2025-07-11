@@ -9,11 +9,11 @@ class Upgrade:
 # upgrades is a dictionary of Upgrade class objects
 var upgrades: Dictionary[String, Upgrade] = {}
 
-# upgrade_unlock_status is a map of Upgrade IDs to a bool indicating whether or not the upgrade is unlocked
-var upgrade_unlock_status: Dictionary = {}
+# unlocked_upgrades is a map of Upgrade IDs to a bool indicating whether or not the upgrade is unlocked
+@export var unlocked_upgrades: Dictionary[String, bool] = {}
 
-# upgrade_purchase_status is a map of Upgrade IDs to a bool indicating whether or not the upgrade is purchased
-var upgrade_purchase_status: Dictionary = {}
+# purchased_upgrades is a map of Upgrade IDs to a bool indicating whether or not the upgrade is purchased
+@export var purchased_upgrades: Dictionary[String, bool] = {}
 
 # monies is curreny used to purchase upgrades
 var monies: int = 0
@@ -24,31 +24,16 @@ signal upgrade_purchased(upgrade_id: String)
 
 func _ready():
 	initialize_upgrades()
-	initialize_upgrade_unlock_status()
+	initialize_unlocks()
+	initialize_purchases()
 
-func initialize_upgrade_unlock_status() -> void:
+func initialize_unlocks() -> void:
 	for key in upgrades:
-		upgrade_unlock_status[key] = false
+		unlocked_upgrades[key] = false
 
-func initialize_upgrade_purchase_status() -> void:
+func initialize_purchases() -> void:
 	for key in upgrades:
-		upgrade_purchase_status[key] = false
-
-# get_upgrade_unlock_status returns the dictionary of unlocked upgrades
-func get_upgrade_unlock_status() -> Dictionary:
-	return upgrade_unlock_status
-
-# upgrade_purchase_status returns the dictionary of purchased upgrades
-func get_upgrade_purchase_status() -> Dictionary:
-	return upgrade_purchase_status
-
-# set_upgrade_unlock_status sets the unlocked_upgrades Dictionary to the one provided
-func set_upgrade_unlock_status(unlocks: Dictionary) -> void:
-	upgrade_unlock_status = unlocks
-
-# set_upgrade_unlock_status sets the unlocked_upgrades Dictionary to the one provided
-func set_upgrade_purchase_status(purchased: Dictionary) -> void:
-	upgrade_purchase_status = purchased
+		purchased_upgrades[key] = false
 
 # get_step_rate returns the increase in step count rate per second for the upgrade of
 # the given id
@@ -56,12 +41,12 @@ func get_step_rate(id: String) -> float:
 	return upgrades[id].rate
 
 # check_unlocks is called to see which upgrades should be currently unlocked,
-# sets the status in the upgrade_unlock_status Array, and emits the signal
+# sets the status in the unlocked_upgrades Array, and emits the signal
 func check_unlocks():
 	var step_count: float = StepTracker.get_step_count()
 	for id: String in upgrades:
-		if step_count >= upgrades[id].cost and not upgrade_unlock_status[id]:
-			upgrade_unlock_status[id] = true
+		if step_count >= upgrades[id].cost and not unlocked_upgrades[id]:
+			unlocked_upgrades[id] = true
 			# TODO currently nothing consumes this signal "upgrade_unlocked"
 			emit_signal("upgrade_unlocked", id)
 
