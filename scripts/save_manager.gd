@@ -24,6 +24,7 @@ func load():
 			for id in data["unlocked_upgrades"]:
 				loaded_unlocks[id] = bool(data["unlocked_upgrades"][id])
 				UpgradeManager.unlocked_upgrades = loaded_unlocks
+			UpgradeManager.check_unlocks()
 		
 		if data.has("purchased_upgrades"):
 			var loaded_purchases: Dictionary[String, bool]

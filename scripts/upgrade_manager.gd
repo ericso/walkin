@@ -19,7 +19,7 @@ var upgrades: Dictionary[String, Upgrade] = {}
 var monies: int = 0
 
 signal upgrade_unlocked(upgrade_id: String)
-# TODO currently nothing sends nor consumes this signal "upgrade_purchased"
+# TODO currently nothing consumes this signal "upgrade_purchased"
 signal upgrade_purchased(upgrade_id: String)
 
 func _ready():
@@ -50,6 +50,10 @@ func check_unlocks():
 			# TODO currently nothing consumes this signal "upgrade_unlocked"
 			emit_signal("upgrade_unlocked", id)
 
+func purchase_upgrade(id: String):
+	purchased_upgrades[id] = true
+	emit_signal("upgrade_purchased", id)
+	
 # initialize_upgrades builds the upgrades Dictionary
 # TODO this should be loaded from a JSON or YAML file
 func initialize_upgrades() -> void:
