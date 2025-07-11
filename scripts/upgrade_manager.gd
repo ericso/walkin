@@ -46,7 +46,6 @@ func check_unlocks():
 	for id: String in upgrades:
 		if step_count >= upgrades[id].cost and not unlocked_upgrades[id]:
 			unlocked_upgrades[id] = true
-			# TODO currently nothing consumes this signal "upgrade_unlocked"
 			emit_signal("upgrade_unlocked", id)
 
 func purchase_upgrade(id: String):
