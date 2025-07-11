@@ -23,8 +23,11 @@ func get_steps_label() -> String:
 # in seconds (to match the `void _process(delta: float) virtual` call in the main loop)
 func calculate_step_delta(delta: float) -> float:
 	var step_count: float = 0.0
-	var unlocked := UpgradeManager.get_upgrade_unlock_status()
-	for id in unlocked:
-		if unlocked[id]:
+	
+	# calculate delta step_count from purchased upgrades
+	var purchased := UpgradeManager.get_upgrade_purchase_status()
+	for id in purchased:
+		if purchased[id]:
 			step_count += UpgradeManager.get_step_rate(id) * delta
+	
 	return step_count
