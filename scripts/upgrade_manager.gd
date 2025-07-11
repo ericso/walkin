@@ -19,6 +19,7 @@ var upgrade_purchase_status: Dictionary = {}
 var monies: int = 0
 
 signal upgrade_unlocked(upgrade_id: String)
+# TODO currently nothing sends nor consumes this signal "upgrade_purchased"
 signal upgrade_purchased(upgrade_id: String)
 
 func _ready():
@@ -61,6 +62,7 @@ func check_unlocks():
 	for id: String in upgrades:
 		if step_count >= upgrades[id].cost and not upgrade_unlock_status[id]:
 			upgrade_unlock_status[id] = true
+			# TODO currently nothing consumes this signal "upgrade_unlocked"
 			emit_signal("upgrade_unlocked", id)
 
 # initialize_upgrades builds the upgrades Dictionary
