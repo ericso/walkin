@@ -19,7 +19,6 @@ var upgrades: Dictionary[String, Upgrade] = {}
 var monies: int = 0
 
 signal upgrade_unlocked(upgrade_id: String)
-# TODO currently nothing consumes this signal "upgrade_purchased"
 signal upgrade_purchased(upgrade_id: String)
 
 func _ready():
