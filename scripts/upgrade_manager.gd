@@ -12,12 +12,59 @@ var upgrades: Dictionary[String, Upgrade] = {}
 # upgrade_unlock_status is a map of Upgrade IDs to a bool indicating whether or not the upgrade is unlocked
 var upgrade_unlock_status: Dictionary = {}
 
+# upgrade_purchase_status is a map of Upgrade IDs to a bool indicating whether or not the upgrade is purchased
+var upgrade_purchase_status: Dictionary = {}
+
+# monies is curreny used to purchase upgrades
+var monies: int = 0
+
 signal upgrade_unlocked(upgrade_id: String)
+signal upgrade_purchased(upgrade_id: String)
 
 func _ready():
 	initialize_upgrades()
 	initialize_upgrade_unlock_status()
 
+func initialize_upgrade_unlock_status() -> void:
+	for key in upgrades:
+		upgrade_unlock_status[key] = false
+
+func initialize_upgrade_purchase_status() -> void:
+	for key in upgrades:
+		upgrade_purchase_status[key] = false
+
+# get_upgrade_unlock_status returns the dictionary of unlocked upgrades
+func get_upgrade_unlock_status() -> Dictionary:
+	return upgrade_unlock_status
+
+# upgrade_purchase_status returns the dictionary of purchased upgrades
+func get_upgrade_purchase_status() -> Dictionary:
+	return upgrade_purchase_status
+
+# set_upgrade_unlock_status sets the unlocked_upgrades Dictionary to the one provided
+func set_upgrade_unlock_status(unlocks: Dictionary) -> void:
+	upgrade_unlock_status = unlocks
+
+# set_upgrade_unlock_status sets the unlocked_upgrades Dictionary to the one provided
+func set_upgrade_purchase_status(purchased: Dictionary) -> void:
+	upgrade_purchase_status = purchased
+
+# get_step_rate returns the increase in step count rate per second for the upgrade of
+# the given id
+func get_step_rate(id: String) -> float:
+	return upgrades[id].rate
+
+# check_unlocks is called to see which upgrades should be currently unlocked,
+# sets the status in the upgrade_unlock_status Array, and emits the signal
+func check_unlocks():
+	var step_count: float = StepTracker.get_step_count()
+	for id: String in upgrades:
+		if step_count >= upgrades[id].cost and not upgrade_unlock_status[id]:
+			upgrade_unlock_status[id] = true
+			emit_signal("upgrade_unlocked", id)
+
+# initialize_upgrades builds the upgrades Dictionary
+# TODO this should be loaded from a JSON or YAML file
 func initialize_upgrades() -> void:
 	upgrades["bike"] = Upgrade.new()
 	upgrades["bike"].id = "bike"
@@ -30,29 +77,3 @@ func initialize_upgrades() -> void:
 	upgrades["car"].name = "Car"
 	upgrades["car"].cost = 200000 # 200,000 steps (100 miles)
 	upgrades["car"].rate = 33.3 # approx 60 MPH
-
-func initialize_upgrade_unlock_status() -> void:
-	for key in upgrades:
-		upgrade_unlock_status[key] = false
-
-# TODO figure out a better way of handling unlocks
-# check_unlocks is called to see which upgrades should be currently unlocked
-func check_unlocks():
-	if StepTracker.get_step_count() >= upgrades["bike"].cost and not upgrade_unlock_status["bike"]:
-		upgrade_unlock_status["bike"] = true
-		emit_signal("upgrade_unlocked", "bike")
-	
-	if StepTracker.get_step_count() >= upgrades["car"].cost and not upgrade_unlock_status["car"]:
-		upgrade_unlock_status["car"] = true
-		emit_signal("upgrade_unlocked", "car")
-
-# get_upgrade_unlock_status returns the dictionary of unlocked upgrades
-func get_upgrade_unlock_status() -> Dictionary:
-	return upgrade_unlock_status
-
-# set_upgrade_unlock_status sets the unlocked_upgrades Dictionary to the one provided
-func set_upgrade_unlock_status(unlocks: Dictionary) -> void:
-	upgrade_unlock_status = unlocks
-
-func get_step_rate(id: String) -> float:
-	return upgrades[id].rate
